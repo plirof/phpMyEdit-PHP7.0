@@ -319,7 +319,8 @@ class phpMyEdit
 	function sql_connect() /* {{{ */   // PDO
 	{
 		try {
-			$dsn = "mysql:host=" . $this->hn . ";dbname=" . $this->db;
+			//$dsn = "mysql:host=" . $this->hn . ";dbname=" . $this->db; //ORIG no utf8
+			$dsn = "mysql:host=" . $this->hn . ";dbname=" . $this->db.";charset=utf8"; //jonmod 180505 utf8
 			$this->dbh = @ini_get('allow_persistent')
 				? new PDO($dsn, $this->un, $this->pw, array( PDO::ATTR_PERSISTENT => true )) // @mysql_pconnect($this->hn, $this->un, $this->pw)
 				: new PDO($dsn, $this->un, $this->pw); // @mysql_connect($this->hn, $this->un, $this->pw);
